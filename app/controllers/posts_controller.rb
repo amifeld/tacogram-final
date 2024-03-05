@@ -2,7 +2,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+
+    respond_to do |format|
+      format.html #{ render :template => "posts/index"}
+      format.json { render :json => @posts}
   end
+end
 
   def new
     @user = User.find_by({ "id" => session["user_id"] })
